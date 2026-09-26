@@ -77,6 +77,11 @@ Rules:
 | file-snapshot | copy or hash of each target file + a timestamp marker file per attempt | targets differ from pin in the expected direction; files newer than the marker exist; untouched targets equal the pin |
 | external-state | version/revision id, export, or query result of each target (doc revision, DB row count/checksum, API resource version) | new revision exists and differs as expected; untouched targets unchanged |
 
+Read-only tasks (summarize, research, review) change nothing in the project:
+the pinned target is the declared report/output file itself — pin "does not
+exist yet", then check it exists, is newer than the marker, and that every
+input file still equals its pin.
+
 Create a per-attempt marker (file with the attempt ID and timestamp) right after
 launch so retry artifacts are distinguishable. Use whatever the OS provides
 (`touch` on POSIX, `New-Item` on PowerShell, or write a file with the tool API).

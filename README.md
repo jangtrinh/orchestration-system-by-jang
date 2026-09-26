@@ -18,7 +18,7 @@ https://github.com/jangtrinh/orchestration-system-by-jang
 Read its README "AI setup guide" section and follow it.
 ```
 
-Your AI checks your environment, asks you at most 4 questions, installs the
+Your AI checks your environment, asks you at most 5 questions, installs the
 system, and reports what it did and what it could not verify.
 
 ## AI setup guide

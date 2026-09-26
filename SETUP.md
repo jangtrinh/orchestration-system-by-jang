@@ -22,17 +22,19 @@ Record each finding as FACT (observed) or ASSUMPTION.
 | Runtime | Which one you are running in; also look for `~/.claude/`, `.claude/`, `~/.codex/`, `AGENTS.md`, `.cursor/rules/`, `GEMINI.md`, `~/.gemini/`, an `orca` binary |
 | Can spawn sub-agents? | Do you have a tool/command that launches another agent with its own context? |
 | Worker models | Models you can choose at spawn time (tool schema, CLI `--help`, config files) |
-| Effort control | Does launch accept a reasoning-effort/thinking-budget parameter? |
+| Effort control | Does the spawn tool/CLI itself accept a reasoning-effort/thinking-budget parameter? A prompt-only convention does not count — note it under human-specific notes |
 | Work domain | Git repo present? Code files? Or documents/data/design assets? |
 | State-change evidence | git (diff) · files (mtime/snapshot) · external system (API/DB/doc versions) |
 | OS shell | POSIX (macOS/Linux) or Windows (PowerShell) |
-| Existing rules | Existing orchestration/delegation rules in instruction files — never overwrite them |
+| Project root | Folder your human named; else the current working directory; ask only if neither is clear |
+| Existing rules | Orchestration/delegation rules already active — check BOTH project files (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.cursor/rules/`, `.claude/`) AND global ones (`~/.claude/CLAUDE.md`, `~/.claude/rules/`, `~/.codex/AGENTS.md`, `~/.gemini/GEMINI.md`) plus anything already in your own context. Never overwrite them |
+| Can you ask your human? | Interactive chat available, or headless/unattended run |
 
 ## 2. Choose install location
 
 | Runtime | Put the folder at | Pointer line goes in |
 |---|---|---|
-| Claude Code | `~/.claude/skills/orchestration-system-by-jang/` (global) or `.claude/skills/…` (project) | optional: `CLAUDE.md` |
+| Claude Code | `~/.claude/skills/orchestration-system-by-jang/` (global) or `.claude/skills/…` (project) | `CLAUDE.md` — required for project scope; optional for global (skills auto-load by description) |
 | Codex CLI | `~/.codex/skills/orchestration-system-by-jang/` if skills are supported, else any path | `AGENTS.md` |
 | Cursor | `.cursor/orchestration-system-by-jang/` | a rule in `.cursor/rules/` (always apply) |
 | Gemini CLI | `~/.gemini/orchestration-system-by-jang/` or project | `GEMINI.md` |
@@ -42,15 +44,18 @@ Record each finding as FACT (observed) or ASSUMPTION.
 Pointer line (adapt path):
 `Before delegating to, spawning, or supervising any agent, read <path>/SKILL.md and <path>/orchestration-config.md and follow them.`
 
-## 3. Ask your human (one message, ≤4 questions, skip any you detected)
+## 3. Ask your human (one message, ≤5 questions, skip any you detected)
 
 1. Global (all projects) or this project only?
 2. Which models may workers use, cheapest to strongest? (Offer what you detected.)
 3. Where should plans and reports live? (Default: `plans/` and `plans/reports/`.)
 4. Which actions always need their approval? (Default: delete, publish, deploy,
    merge, migrate, spend money, send messages to people.)
+5. Only if §1 found existing orchestration rules: which wins on conflict?
+   (Default: **existing rules win**; this system fills gaps they don't cover.)
 
-If they don't answer, use the defaults and mark them ASSUMPTION in the config.
+If they don't answer, or you run headless and cannot ask, use the defaults, mark
+them ASSUMPTION in the config, and list the unasked questions in your §7 report.
 
 ## 4. Write `orchestration-config.md`
 
@@ -63,13 +68,16 @@ folder and fill every field from §1 and §3. Pick:
 - **Adapter:** the matching section name from `references/runtime-adapters.md`.
 - **Mode for "no sub-agents":** if you cannot spawn agents, set adapter to
   `single-session` and read its limits.
+- **Precedence:** from §3 question 5. If existing rules name a specific spawn
+  mechanism (e.g. a mandated orchestrator), set the adapter to that runtime's
+  section, not the generic one.
 
 ## 5. Install
 
 1. Put the whole folder at the §2 location (create parent dirs as needed). With
    git, prefer cloning straight there so `git pull` updates it later:
    `git clone https://github.com/jangtrinh/orchestration-system-by-jang.git <location>`.
-   Otherwise copy the downloaded folder. If a folder with that name exists,
+   Otherwise copy the downloaded folder (copy, never move or delete the source). If a folder with that name exists,
    compare first; never overwrite silently — ask your human.
 2. Add the pointer line to the instruction file, appended, not replacing anything.
    Skip if the runtime auto-loads skills by description and the human chose global.
@@ -87,6 +95,7 @@ folder and fill every field from §1 and §3. Pick:
 
 ## 7. Report to your human
 
-Lead with what was NOT verified. Then: install path, pointer file changed (with the
+Reply in chat. If you ran headless, also write the same report to
+`orchestration-setup-report.md` next to the config. Lead with what was NOT verified. Then: install path, pointer file changed (with the
 exact line added), config summary (runtime, routing mode, pin method, approval
 gates), the dry-run spec, and open questions. Keep the report short.

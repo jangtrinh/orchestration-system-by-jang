@@ -24,11 +24,15 @@ Copy to `orchestration-config.md` and fill every `<...>`. Mark guessed values
 - Model IDs last verified: <YYYY-MM-DD, how>
 
 ## Work
-- Domain: <code | research | content | data | design | mixed>
+- Domain: <code | research | content | data | design | notes/knowledge-base | mixed | other: describe>
 - Pin method(s): <git | file-snapshot | external-state: which system>
 - Work dir for plans: <path, default plans/>
 - Reports dir: <path, default plans/reports/>
 - Max verify→fix rounds: <3>
+
+## Precedence
+- Existing orchestration rules found: <paths | none>
+- On conflict: <existing rules win (default) | this system wins | merged: how>
 
 ## Approval gates (always ask the human first)
 - <delete, publish, deploy, merge, migrate, spend money, message people, …>

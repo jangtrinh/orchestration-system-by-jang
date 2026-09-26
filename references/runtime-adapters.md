@@ -24,7 +24,8 @@ version's `--help`/docs before relying on them.
 |---|---|
 | run / task | Plan folder + acceptance.md (task-list tools if available) |
 | attempt | Each sub-agent launch; record the returned agent ID |
-| launch | Agent/Task tool with an agent type and optional model; git worktree isolation if offered |
+| launch | Agent/Task tool with an agent type and optional model. If your existing rules mandate an orchestrator (e.g. Orca), use that section instead |
+| isolate | git worktree isolation if offered; without git, a copied folder per writer |
 | wait | Background completion notification; idle ≠ done |
 | ask/reply | Message tool to the agent ID, only if that agent type has one |
 | complete | Final report text, or a file at the declared report path |
