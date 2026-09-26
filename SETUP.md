@@ -1,7 +1,7 @@
 # SETUP — instructions for the AI agent installing this system
 
 You are installing **Orchestration System by Jang** for your human. Follow the
-steps in order. Detect before you ask; ask at most 4 questions, all in one message.
+steps in order. Detect before you ask; ask at most 5 questions, all in one message.
 Do not modify `SKILL.md` or `references/` — local choices go only in
 `orchestration-config.md`.
 
