@@ -88,4 +88,4 @@ FRAME → ACCEPTANCE → ROUTE → DISPATCH → EXECUTE → VERIFY → REPORT
 ## Credit and license
 
 Orchestration System by Jang, distilled from a production multi-agent setup.
-[MIT](LICENSE). Keep this credit line when you redistribute or adapt it.
+[PolyForm Shield 1.0.0](LICENSE): free to use and modify, including for paid work; you may not resell it or ship a competing product from it. Keep this credit line when you redistribute or adapt it.

@@ -1,7 +1,7 @@
 ---
 name: orchestration-system-by-jang
 description: "Orchestration System by Jang. Use when spawning, supervising, handing off, or coordinating AI agents/subagents for any kind of work. Enforces an explicit dispatch contract, capability routing, independent verification, no-op/refusal detection, and resource cleanup."
-license: MIT
+license: PolyForm Shield 1.0.0 (see LICENSE)
 metadata:
   author: Jang
   version: 2.0.0
